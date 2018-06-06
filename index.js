@@ -1,3 +1,4 @@
+//node http package and port definition
 const http = require('http')
 const port = process.env.PORT;
 
@@ -14,7 +15,6 @@ client.connect();
 
 //async function that inserts a creator to the database
 async function insertCreator(creator) {
-  console.log(creator);
 
   return await client.query(`INSERT INTO creators (name,profileurl) VALUES ('${creator.name}','${creator.profileUrl}') RETURNING creator_id`);
   
@@ -29,10 +29,10 @@ async function insertArticle(article) {
 
 const requestHandler = async (req, res) => {
   
-    //We parse the output of the sync file reading
+    //parse the output of the sync file reading
     var data = JSON.parse(fs.readFileSync('prezis.json'));
 
-    //so we can iterate the data , in order to have an await inside it
+    //for instead of forEach in order to have an await inside it
     for (let value of data) {
 
         //Setting up a 'creator' object
@@ -40,9 +40,9 @@ const requestHandler = async (req, res) => {
             name: value.creator.name,
             profileUrl: value.creator.profileUrl
         }
-
+        
+        //returns a promise that has the returned id ,otherwise an error
         try {
-            //returns a promise that has the returned id ,otherwise an error
             var creator_result = await insertCreator(creator)
             var creator_id = creator_result.rows[0].creator_id;
 
@@ -80,8 +80,10 @@ const requestHandler = async (req, res) => {
     }
 }
 
+//create the server
 const server = http.createServer(requestHandler)
 
+//listen to the Port
 server.listen(port, (err) => {
   if (err) {
     return console.log('something bad happened', err)
