@@ -1,0 +1,23 @@
+{
+  "name": "interview-dbinsertions",
+  "version": "1.0.0",
+  "description": "The basic node.js app , that helps up to insert the values from the json file, into the database",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LeoLoupos/interview-DBinsertions.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LeoLoupos/interview-DBinsertions/issues"
+  },
+  "homepage": "https://github.com/LeoLoupos/interview-DBinsertions#readme",
+  "dependencies": {
+    "pg": "^7.4.3"
+  }
+}

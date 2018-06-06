@@ -1,0 +1,6 @@
+{
+    "env": {
+        "PORT": 3000,
+        "POSTGRE_DATABASE_URL" : "postgres://Leo:password@localhost:5432/norbloc-interview"
+    }
+}
